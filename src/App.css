@@ -1,0 +1,133 @@
+#root {
+  width: 100vw;
+  margin: 0 auto;
+  /* padding: 2rem; */
+  /* text-align: center; */
+  height: 100vh;
+  border: 1px solid red;
+  background-color: #5f7c8a;
+  position: relative;
+}
+
+.main-container {
+  position: absolute;
+  top: 20%;
+  left: 38%;
+  background: #fff;
+  border-radius: 40px;
+}
+
+.card {
+  padding: 1rem;
+}
+
+.form-group {
+  position: relative;
+  float: left;
+  width: 100%;
+  margin: 0 0 15px;
+}
+
+.form-group input {
+  border: 1px solid gray;
+  border-radius: 100px;
+  height: 40px;
+  font-size: 14px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  padding: 20px 0;
+  padding-left: 43px;
+}
+
+.form-group .input-icon {
+  position: absolute;
+  top: 19%;
+  left: 5%;
+  color: #666;
+}
+.signup-btn {
+  width: 100%;
+  border-color: #45aba6;
+  border: 1px solid #45aba6;
+  background: #45aba6;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 0.5;
+  cursor: pointer;
+}
+
+.login-btn {
+  color: #45aba6;
+  text-align: center;
+  font-size: 14px;
+  float: left;
+  width: 100%;
+  margin-top: 7px;
+  font-weight: 450;
+}
+
+.login-btn a {
+  text-decoration: none;
+  color: #45aba6;
+}
+
+.seperator {
+  float: left;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  margin-top: 40px;
+
+  height: 20px;
+}
+
+.signup-form .seperator b {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 40px;
+  background: #fff;
+  display: inline-block;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  position: relative;
+  top: -22px;
+  z-index: 1;
+}
+
+p {
+  text-align: center;
+  margin: 0;
+  font-size: 14px;
+}
+
+.signup-form .social-media-icon {
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+
+  /* color: #fff; */
+}
+
+.signup-form .social-media-icon button {
+  font-size: 15px;
+  color: white;
+  background: #45aba6;
+  border-radius: 60%;
+  height: 42px;
+  width: 47px;
+  margin: 0px 10px;
+  border: none;
+  cursor: pointer;
+}
+.signup-form button:hover {
+  opacity: 0.9;
+}
+
+@media screen and (max-width: 767px) {
+  .login-form {
+    width: 90%;
+    padding: 15px 15px 30px;
+  }
+}
