@@ -68,6 +68,15 @@ const Products = () => {
     setShow(false);
   };
 
+  const handleDelete = (e, id) => {
+    e.preventDefault();
+    const filteredProduct = products.filter((prod) => {
+      return id !== prod.id;
+    });
+
+    setProducts(filteredProduct);
+  };
+
   return (
     <>
       {isLoading ? (
@@ -87,7 +96,13 @@ const Products = () => {
           >
             {products.map((product) => {
               //console.log(product);
-              return <ProductList product={product} key={product.id} />;
+              return (
+                <ProductList
+                  product={product}
+                  key={product.id}
+                  handleDelete={handleDelete}
+                />
+              );
             })}
           </div>
         </div>

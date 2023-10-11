@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-const ProductList = ({ product }) => {
+const ProductList = ({ product, handleDelete }) => {
   return (
     <div>
       <Card style={{ width: "18rem", height: "370px" }} className="box">
@@ -28,7 +28,9 @@ const ProductList = ({ product }) => {
           <Button variant="success" className="me-2">
             Edit
           </Button>
-          <Button variant="danger">Delete</Button>
+          <Button variant="danger" onClick={(e) => handleDelete(e, product.id)}>
+            Delete
+          </Button>
         </Card.Footer>
       </Card>
     </div>
