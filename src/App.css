@@ -4,7 +4,7 @@
   /* padding: 2rem; */
   /* text-align: center; */
   height: 100vh;
-  border: 1px solid red;
+
   background-color: #5f7c8a;
   position: relative;
 }
@@ -123,6 +123,19 @@ p {
 }
 .signup-form button:hover {
   opacity: 0.9;
+}
+
+.box {
+  box-shadow: 8px 8px 5px #aaaaaa;
+  transition: transform 0.2s ease-in-out;
+}
+
+.box:hover {
+  transform: scale(1.05);
+}
+
+#card-div {
+  background-color: #fff;
 }
 
 @media screen and (max-width: 767px) {
