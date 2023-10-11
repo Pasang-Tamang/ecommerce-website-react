@@ -45,7 +45,10 @@ const Login = () => {
   };
   return (
     <div className="main-container">
-      <Card style={{ width: "22rem" }}>
+      <Card
+        style={{ width: "22rem", height: "28rem" }}
+        className="credential-card"
+      >
         <h3 className="text-center" style={{ color: "#45aba6" }}>
           Login
         </h3>

@@ -57,13 +57,16 @@ const Signup = () => {
         navigate("/");
       }
     } catch (error) {
-      console.log(error.response.data.message);
+      //console.log(error.response.data.message);
       errorToast(error.response.data.message);
     }
   };
   return (
     <div className="main-container">
-      <Card style={{ width: "22rem", height: "30rem" }}>
+      <Card
+        style={{ width: "22rem", height: "30rem" }}
+        className="credential-card"
+      >
         <h3 className="text-center" style={{ color: "#45aba6" }}>
           SignUp
         </h3>

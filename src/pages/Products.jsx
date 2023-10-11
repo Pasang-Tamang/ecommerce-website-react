@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProductList from "../components/ProductList";
+import Navmenu from "../components/Navbar";
 
+import Navbar from "../components/Navbar";
 const Products = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -18,15 +20,22 @@ const Products = () => {
   };
 
   return (
-    <div
-      id="card-div"
-      className="  d-flex flex-wrap justify-content-center gap-5"
-    >
-      {products.map((product) => {
-        //console.log(product);
-        return <ProductList product={product} key={product.id} />;
-      })}
-    </div>
+    <>
+      <Navmenu />
+      <div className="container mb-4 mt-4">
+        <button className="btn btn-primary">Add Products</button>
+      </div>
+
+      <div
+        id="card-div"
+        className=" d-flex flex-wrap justify-content-center gap-5"
+      >
+        {products.map((product) => {
+          //console.log(product);
+          return <ProductList product={product} key={product.id} />;
+        })}
+      </div>
+    </>
   );
 };
 

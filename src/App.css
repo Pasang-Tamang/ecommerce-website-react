@@ -3,22 +3,19 @@
   margin: 0 auto;
   /* padding: 2rem; */
   /* text-align: center; */
-  height: 100vh;
-
-  background-color: #5f7c8a;
-  position: relative;
 }
 
 .main-container {
+  background-color: #5f7c8a;
+  height: 100vh;
+  position: relative;
+}
+
+.credential-card {
+  padding: 1rem;
   position: absolute;
   top: 20%;
   left: 38%;
-  background: #fff;
-  border-radius: 40px;
-}
-
-.card {
-  padding: 1rem;
 }
 
 .form-group {
