@@ -39,7 +39,11 @@ const AddProduct = ({ show, handleValue, addHandler }) => {
             />
           </FloatingLabel>
 
-          <FloatingLabel controlId="floatingTextarea2" label="Description">
+          <FloatingLabel
+            controlId="floatingTextarea2"
+            label="Description"
+            className="mb-3"
+          >
             <Form.Control
               name="description"
               as="textarea"
@@ -48,6 +52,31 @@ const AddProduct = ({ show, handleValue, addHandler }) => {
               onChange={handleValue}
             />
           </FloatingLabel>
+
+          <Form.Group className="row">
+            <Form.Group className="col-6">
+              <FloatingLabel controlId="floating" label="Actual Price">
+                <Form.Control
+                  name="price"
+                  placeholder="actual price"
+                  onChange={handleValue}
+                ></Form.Control>
+              </FloatingLabel>
+            </Form.Group>
+
+            <Form.Group className="col-6">
+              <FloatingLabel
+                controlId="floatingdiscount"
+                label="Discount Percent"
+              >
+                <Form.Control
+                  name="discountPercentage"
+                  placeholder="discount percent"
+                  onChange={handleValue}
+                ></Form.Control>
+              </FloatingLabel>
+            </Form.Group>
+          </Form.Group>
         </Modal.Body>
 
         <Modal.Footer>

@@ -4,17 +4,23 @@ import ProductList from "../components/ProductList";
 import Navmenu from "../components/Navbar";
 import Loader from "../components/Loader";
 import AddProduct from "../components/AddProduct";
+import ViewProduct from "../components/ViewProduct";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
+  const [showView, setShowView] = useState(false);
+
   const [product, setProduct] = useState({
     id: Date.now(),
     thumbnail: "",
     title: "",
     description: "",
+    price: 0,
+    discountPercentage: 0,
   });
+  const [viewProd, setViewProd] = useState({});
 
   // const [thumbnail, setThumbnail] = useState("");
   // const [title, setTitle] = useState("");
@@ -40,6 +46,29 @@ const Products = () => {
   const addProductHandler = (e) => {
     e.preventDefault();
     setShow(true);
+  };
+
+  const handleView = (e, id) => {
+    e.preventDefault();
+    setShowView(true);
+    // const viewProd = products.map((prod) => {
+    //   if (id === prod.id) {
+    //     return prod;
+    //   } else {
+    //     return "not";
+    //   }
+    // });
+
+    const viewProduct = products.find((prod) => {
+      return id === prod.id;
+    });
+    //console.log(viewProduct);
+    setViewProd(viewProduct);
+    console.log(viewProd);
+  };
+
+  const handleClose = () => {
+    setShowView(false);
   };
 
   const handleValue = (e) => {
@@ -101,6 +130,7 @@ const Products = () => {
                   product={product}
                   key={product.id}
                   handleDelete={handleDelete}
+                  handleView={handleView}
                 />
               );
             })}
@@ -112,6 +142,12 @@ const Products = () => {
         show={show}
         handleValue={handleValue}
         addHandler={addHandler}
+      />
+
+      <ViewProduct
+        showView={showView}
+        viewProd={viewProd}
+        handleClose={handleClose}
       />
 
       {/* {products.length > 0 ? (
