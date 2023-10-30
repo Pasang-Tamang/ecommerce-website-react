@@ -5,13 +5,15 @@ import Navmenu from "../components/Navbar";
 import Loader from "../components/Loader";
 import AddProduct from "../components/AddProduct";
 import ViewProduct from "../components/ViewProduct";
+import EditProduct from "../components/EditProduct";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [showView, setShowView] = useState(false);
-
+  const [edit, setEdit] = useState(false);
+  const [editedProduct, setEditedproduct] = useState({});
   const [product, setProduct] = useState({
     id: Date.now(),
     thumbnail: "",
@@ -67,6 +69,43 @@ const Products = () => {
     console.log(viewProd);
   };
 
+  const handleEdit = (e, product) => {
+    e.preventDefault();
+    console.log("edit");
+    setEdit(true);
+    //console.log(product);
+    const prod = products.find((prod) => {
+      return prod.id === product.id;
+    });
+
+    setEditedproduct(prod);
+    //console.log(editedProduct);
+  };
+
+  const handleCloseEdit = (e) => {
+    setEdit(false);
+  };
+
+  const handleEditChange = (e) => {
+    //console.log(e.target.name, e.target.value);
+    setEditedproduct((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+
+    console.log(editedProduct);
+  };
+
+  const editProduct = (e) => {
+    e.preventDefault();
+    console.log("edited", editedProduct);
+
+    const updatedProduct = products.map((product) => {
+      return product.id === editedProduct.id ? editedProduct : product;
+    });
+
+    setProducts(updatedProduct);
+    setEdit(false);
+  };
   const handleClose = () => {
     setShowView(false);
   };
@@ -131,6 +170,7 @@ const Products = () => {
                   key={product.id}
                   handleDelete={handleDelete}
                   handleView={handleView}
+                  handleEdit={handleEdit}
                 />
               );
             })}
@@ -148,6 +188,14 @@ const Products = () => {
         showView={showView}
         viewProd={viewProd}
         handleClose={handleClose}
+      />
+
+      <EditProduct
+        edit={edit}
+        editedProduct={editedProduct}
+        handleClose={handleCloseEdit}
+        handleEditChange={handleEditChange}
+        editProduct={editProduct}
       />
 
       {/* {products.length > 0 ? (
