@@ -33,7 +33,10 @@ const Login = () => {
       .post("https://backend-mu-pied.vercel.app/users/login", loginData)
       .then((response) => {
         //console.log(response);
+
+        // debugger;
         if (response.data.status) {
+          localStorage.setItem("isLoggedIn", true);
           successToast(response.data.message);
           navigate("/products");
         }

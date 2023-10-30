@@ -3,6 +3,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import Products from "./pages/Products";
+import SecureRoute from "./routes/SecureRoute";
 
 const AppComponent = () => {
   return (
@@ -10,7 +11,9 @@ const AppComponent = () => {
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Login />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="" element={<SecureRoute />}>
+          <Route path="/products" element={<Products />} />
+        </Route>
       </Routes>
       <ToastContainer />
     </div>
