@@ -9,6 +9,7 @@ import EditProduct from "../components/EditProduct";
 import { FloatingLabel, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { logoutToast } from "../services/toast.service";
+import ProductContext from "../context/GlobalContext";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -202,56 +203,52 @@ const Products = () => {
         <Loader />
       ) : (
         <div>
-          <Navmenu logout={logout} />
-          <div className="container mb-4 mt-4 d-flex justify-content-between">
-            <button className="btn btn-primary" onClick={addProductHandler}>
-              Add Products
-            </button>
-
-            <div className="search d-flex gap-3">
-              <FloatingLabel
-                controlId="floatingInput"
-                label="Search Product here"
-              >
-                <Form.Control
-                  name="SearchKey"
-                  type="text"
-                  placeholder="Product Price"
-                  onChange={searchProduct}
-                  style={{ width: "200px" }}
-                />
-              </FloatingLabel>
-
-              <Form.Select onChange={(e) => filterProduct(e.target.value)}>
-                <option value="">Filter with Categories</option>
-                {categories.map((category) => {
-                  return (
-                    <option key={category} value={category}>
-                      {category}
-                    </option>
-                  );
-                })}
-              </Form.Select>
-            </div>
-          </div>
-
-          <div
-            id="card-div"
-            className=" d-flex flex-wrap justify-content-center gap-5"
+          <ProductContext.Provider
+            value={{ handleView, handleEdit, handleDelete }}
           >
-            {products.map((product) => {
-              //console.log(products);
-              return (
-                <ProductList
-                  product={product}
-                  key={product.id}
-                  handleDelete={handleDelete}
-                  handleView={handleView}
-                  handleEdit={handleEdit}
-                />
-              );
-            })}
-          </div>
+            <Navmenu logout={logout} />
+            <div className="container mb-4 mt-4 d-flex justify-content-between">
+              <button className="btn btn-primary" onClick={addProductHandler}>
+                Add Products
+              </button>
+
+              <div className="search d-flex gap-3">
+                <FloatingLabel
+                  controlId="floatingInput"
+                  label="Search Product here"
+                >
+                  <Form.Control
+                    name="SearchKey"
+                    type="text"
+                    placeholder="Product Price"
+                    onChange={searchProduct}
+                    style={{ width: "200px" }}
+                  />
+                </FloatingLabel>
+
+                <Form.Select onChange={(e) => filterProduct(e.target.value)}>
+                  <option value="">Filter with Categories</option>
+                  {categories.map((category) => {
+                    return (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
+                    );
+                  })}
+                </Form.Select>
+              </div>
+            </div>
+
+            <div
+              id="card-div"
+              className=" d-flex flex-wrap justify-content-center gap-5"
+            >
+              {products.map((product) => {
+                //console.log(products);
+                return <ProductList product={product} key={product.id} />;
+              })}
+            </div>
+          </ProductContext.Provider>
         </div>
       )}
 
@@ -271,8 +268,8 @@ const Products = () => {
         edit={edit}
         editedProduct={editedProduct}
         handleClose={handleCloseEdit}
-        handleEditChange={handleEditChange}
         editProduct={editProduct}
+        handleEditChange={handleEditChange}
       />
 
       {/* {products.length > 0 ? (

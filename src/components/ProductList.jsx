@@ -1,8 +1,9 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { returnProductPrice } from "../utils/helper.js";
+import CardFooter from "./CardFooter.jsx";
 
-const ProductList = ({ product, handleDelete, handleView, handleEdit }) => {
+const ProductList = ({ product }) => {
   return (
     <div>
       <Card style={{ width: "18rem", height: "370px" }} className="box">
@@ -46,25 +47,7 @@ const ProductList = ({ product, handleDelete, handleView, handleEdit }) => {
           </div>
         </Card.Body>
 
-        <Card.Footer className="text-center">
-          <Button
-            variant="primary"
-            className="me-2"
-            onClick={(e) => handleView(e, product.id)}
-          >
-            View
-          </Button>
-          <Button
-            variant="success"
-            className="me-2"
-            onClick={(e) => handleEdit(e, product)}
-          >
-            Edit
-          </Button>
-          <Button variant="danger" onClick={(e) => handleDelete(e, product.id)}>
-            Delete
-          </Button>
-        </Card.Footer>
+        <CardFooter product={product} />
       </Card>
     </div>
   );

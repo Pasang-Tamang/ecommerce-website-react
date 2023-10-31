@@ -8,8 +8,8 @@ function StaticExample({
   edit,
   editedProduct,
   handleClose,
-  handleEditChange,
   editProduct,
+  handleEditChange,
 }) {
   return (
     <div>
