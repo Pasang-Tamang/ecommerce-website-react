@@ -15,7 +15,7 @@ const Navmenu = () => {
           </Nav>
 
           <Nav className="ms-auto">
-            <input type="text" placeholder="Search" className="searchbox" />
+            {/* <input type="text" placeholder="Search" className="searchbox" /> */}
             <Nav.Link href="#">LOGOUT</Nav.Link>
           </Nav>
         </Container>

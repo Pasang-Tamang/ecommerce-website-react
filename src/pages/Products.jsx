@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 import AddProduct from "../components/AddProduct";
 import ViewProduct from "../components/ViewProduct";
 import EditProduct from "../components/EditProduct";
+import { FloatingLabel, Form } from "react-bootstrap";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -23,6 +24,7 @@ const Products = () => {
     discountPercentage: 0,
   });
   const [viewProd, setViewProd] = useState({});
+  const [searchProducts, setSearchProducts] = useState([]);
 
   // const [thumbnail, setThumbnail] = useState("");
   // const [title, setTitle] = useState("");
@@ -37,6 +39,7 @@ const Products = () => {
       setIsLoading(true);
       const response = await axios.get(URL + "/products");
       setProducts(response.data.products);
+      setSearchProducts(response.data.products);
       //console.log(products);
       setIsLoading(false);
     } catch (error) {
@@ -145,6 +148,19 @@ const Products = () => {
     setProducts(filteredProduct);
   };
 
+  function searchProduct(e) {
+    console.log(e.target.value);
+    console.log(
+      products[0].title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    console.log(searchProducts);
+    const searchedProduct = searchProducts.filter((product) => {
+      return product.title.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+
+    setProducts(searchedProduct);
+  }
+
   return (
     <>
       {isLoading ? (
@@ -152,10 +168,22 @@ const Products = () => {
       ) : (
         <div>
           <Navmenu />
-          <div className="container mb-4 mt-4">
+          <div className="container mb-4 mt-4 d-flex justify-content-between">
             <button className="btn btn-primary" onClick={addProductHandler}>
               Add Products
             </button>
+
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Search Product here"
+            >
+              <Form.Control
+                name="SearchKey"
+                type="text"
+                placeholder="Product Price"
+                onChange={searchProduct}
+              />
+            </FloatingLabel>
           </div>
 
           <div
