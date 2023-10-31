@@ -18,3 +18,7 @@ export const successToast = (message) => {
 export const errorToast = (message) => {
   toast.error(message, config);
 };
+
+export const logoutToast = () => {
+  toast.success("User LoggeOut Successfully", config);
+};

@@ -7,6 +7,8 @@ import AddProduct from "../components/AddProduct";
 import ViewProduct from "../components/ViewProduct";
 import EditProduct from "../components/EditProduct";
 import { FloatingLabel, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { logoutToast } from "../services/toast.service";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -26,6 +28,7 @@ const Products = () => {
   const [viewProd, setViewProd] = useState({});
   const [searchProducts, setSearchProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
 
   // const [thumbnail, setThumbnail] = useState("");
   // const [title, setTitle] = useState("");
@@ -185,13 +188,21 @@ const Products = () => {
     //console.log(filteredProduct);
   }
 
+  function logout(e) {
+    e.preventDefault();
+    console.log("clciked");
+    sessionStorage.removeItem("isLoggedIn");
+    navigate("/");
+    logoutToast();
+  }
+
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
         <div>
-          <Navmenu />
+          <Navmenu logout={logout} />
           <div className="container mb-4 mt-4 d-flex justify-content-between">
             <button className="btn btn-primary" onClick={addProductHandler}>
               Add Products

@@ -42,7 +42,7 @@ const Login = () => {
         }
       })
       .catch((error) => {
-        //console.log(error.response.data.message);
+        console.log(error.response.data.message);
         errorToast(error.response.data.message);
       });
   };

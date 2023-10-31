@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-const Navmenu = () => {
+const Navmenu = ({ logout }) => {
   return (
     <div>
       <Navbar bg="dark" data-bs-theme="dark" style={{ height: "75px" }}>
@@ -16,7 +16,10 @@ const Navmenu = () => {
 
           <Nav className="ms-auto">
             {/* <input type="text" placeholder="Search" className="searchbox" /> */}
-            <Nav.Link href="#">LOGOUT</Nav.Link>
+            {/* <Nav.Link href="#">LOGOUT</Nav.Link> */}
+            <button className="text-white bg-dark" onClick={logout}>
+              LOGOUT
+            </button>
           </Nav>
         </Container>
       </Navbar>
