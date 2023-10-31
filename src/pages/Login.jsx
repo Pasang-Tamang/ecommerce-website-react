@@ -36,7 +36,7 @@ const Login = () => {
 
         // debugger;
         if (response.data.status) {
-          localStorage.setItem("isLoggedIn", true);
+          sessionStorage.setItem("isLoggedIn", true);
           successToast(response.data.message);
           navigate("/products");
         }

@@ -25,6 +25,7 @@ const Products = () => {
   });
   const [viewProd, setViewProd] = useState({});
   const [searchProducts, setSearchProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   // const [thumbnail, setThumbnail] = useState("");
   // const [title, setTitle] = useState("");
@@ -40,6 +41,15 @@ const Products = () => {
       const response = await axios.get(URL + "/products");
       setProducts(response.data.products);
       setSearchProducts(response.data.products);
+      const categorie = response.data.products.map((product) => {
+        return product.category;
+      });
+      //console.log(categories);
+      //console.log([...new Set(categorie)]);
+      const uniqueCategories = [...new Set(categorie)];
+      setCategories(uniqueCategories);
+      //console.log(categories);
+
       //console.log(products);
       setIsLoading(false);
     } catch (error) {
@@ -161,6 +171,20 @@ const Products = () => {
     setProducts(searchedProduct);
   }
 
+  function filterProduct(data) {
+    //console.log(data === "");
+    if (data === "") {
+      setProducts(searchProducts);
+    } else {
+      const filteredProduct = searchProducts.filter((product) => {
+        return product.category === data;
+      });
+      setProducts(filteredProduct);
+    }
+
+    //console.log(filteredProduct);
+  }
+
   return (
     <>
       {isLoading ? (
@@ -173,17 +197,31 @@ const Products = () => {
               Add Products
             </button>
 
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Search Product here"
-            >
-              <Form.Control
-                name="SearchKey"
-                type="text"
-                placeholder="Product Price"
-                onChange={searchProduct}
-              />
-            </FloatingLabel>
+            <div className="search d-flex gap-3">
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Search Product here"
+              >
+                <Form.Control
+                  name="SearchKey"
+                  type="text"
+                  placeholder="Product Price"
+                  onChange={searchProduct}
+                  style={{ width: "200px" }}
+                />
+              </FloatingLabel>
+
+              <Form.Select onChange={(e) => filterProduct(e.target.value)}>
+                <option value="">Filter with Categories</option>
+                {categories.map((category) => {
+                  return (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  );
+                })}
+              </Form.Select>
+            </div>
           </div>
 
           <div
@@ -191,7 +229,7 @@ const Products = () => {
             className=" d-flex flex-wrap justify-content-center gap-5"
           >
             {products.map((product) => {
-              //console.log(product);
+              //console.log(products);
               return (
                 <ProductList
                   product={product}
