@@ -7,7 +7,12 @@ import {
   Button,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment, reset } from "../slice/counterSlice";
+import {
+  decrement,
+  increment,
+  incrementByValue,
+  reset,
+} from "../slice/counterSlice";
 
 const Counter = () => {
   //useSelector((state) => console.log(state.counterReducer.count));
@@ -21,11 +26,17 @@ const Counter = () => {
         COUNTER
       </CardHeader>
 
-      <CardBody
-        className=" align-items-center d-flex justify-content-center"
-        style={{ fontSize: "25px" }}
-      >
-        Count: {count}
+      <CardBody className=" text-center mt-4">
+        <span style={{ fontSize: "20px" }}> Count: {count}</span>
+        <div>
+          <input
+            type="number"
+            className="mt-3"
+            onChange={(e) => dispatch(incrementByValue(e.target.value))}
+            placeholder="Type number to increment count"
+            style={{ width: "270px" }}
+          />
+        </div>
       </CardBody>
 
       <CardFooter className="text-center">
