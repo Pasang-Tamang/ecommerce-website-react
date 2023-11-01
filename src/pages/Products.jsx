@@ -192,7 +192,9 @@ const Products = () => {
   function logout(e) {
     e.preventDefault();
     console.log("clciked");
+
     sessionStorage.removeItem("isLoggedIn");
+
     navigate("/");
     logoutToast();
   }

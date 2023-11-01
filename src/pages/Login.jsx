@@ -11,12 +11,15 @@ import {
   faGoogle,
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
+import { useDispatch } from "react-redux";
+import { login } from "../slice/authReducer";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -37,6 +40,8 @@ const Login = () => {
         // debugger;
         if (response.data.status) {
           sessionStorage.setItem("isLoggedIn", true);
+          //console.log(response.data);
+          dispatch(login(response.data.data.jwt));
           successToast(response.data.message);
           navigate("/products");
         }
