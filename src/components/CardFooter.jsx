@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Card, Button } from "react-bootstrap";
-import ProductContext from "../context/GlobalContext";
+import ProductContext from "../context/ProductContext";
 
 const CardFooter = ({ product }) => {
   const { handleView, handleEdit, handleDelete } = useContext(ProductContext);

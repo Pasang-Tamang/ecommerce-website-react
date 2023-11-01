@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import Products from "./pages/Products";
 import SecureRoute from "./routes/SecureRoute";
+import Counter from "./components/Counter";
 
 const AppComponent = () => {
   return (
@@ -14,6 +15,7 @@ const AppComponent = () => {
         <Route path="" element={<SecureRoute />}>
           <Route path="/products" element={<Products />} />
         </Route>
+        <Route path="/counter" element={<Counter s />} />
       </Routes>
       <ToastContainer />
     </div>

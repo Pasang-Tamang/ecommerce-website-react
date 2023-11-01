@@ -9,7 +9,7 @@ import EditProduct from "../components/EditProduct";
 import { FloatingLabel, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { logoutToast } from "../services/toast.service";
-import ProductContext from "../context/GlobalContext";
+import ProductContext from "../context/ProductContext";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
